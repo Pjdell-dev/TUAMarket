@@ -1,0 +1,105 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+}
+
+img{
+    width: 70px;
+    height: 70px;
+    padding-left: 18px;
+}
+
+h1{
+    padding-left: 10px;
+    font-size: 25px;
+}
+
+nav{
+    padding-left: 120px;
+    font-size: 15px;
+    display: flex;
+    grid-template-columns: repeat(5, auto);
+    gap: 30px;
+}
+
+i {
+    font-size: 50px;
+    position: absolute;
+    top: 20px;
+    right: 80px; /* Icon stays on the right */
+}
+
+.nav-link {
+    text-decoration: none;   
+    color: #000;             
+    font-size: 15px;               
+  }
+
+.nav-link:hover {
+    text-decoration: none;   
+    color: #456a31;             
+    font-size: 15px;               
+}
+
+
+@media (max-width: 1250px) {
+
+    header{
+        flex-direction: column;
+    }
+
+    img {
+        width: 23vw;
+        height: 23vw;
+        padding-left: 0;
+        margin-right: 0;
+        margin-bottom: 0px; /* Add space below the logo */
+    }
+
+    h1{
+        padding-left: 0;
+        font-size: 35px;
+    }
+
+    nav{
+        flex-direction: column;
+        align-items: center;
+        padding-left: 0;
+        gap: 3px;
+    }
+    
+}
+
+@media (max-width: 1000px) {
+    nav{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    i {
+        right: 60px; /* Adjust position */
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    i {
+        right: 35px; /* Move further left */
+        
+    }
+}
+
+@media (max-width: 360px) {
+    i {
+        right: 10px; /* Adjust even more */
+        font-size: 25px;
+       
+    }
+}
