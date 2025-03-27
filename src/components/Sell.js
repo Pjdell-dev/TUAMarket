@@ -1,8 +1,21 @@
 import React from 'react';
-import FileUpload from './FileUpload';
+import DragNdrop from './DragNdrop';
 import './Sell.css'; // Import the external CSS file
+import { useNavigate } from "react-router-dom";
 
 function Sell() {
+
+    const navigate = useNavigate();
+
+    const goHome = () => {
+      navigate("/");
+    };
+
+    const onFileChange = (files) => {
+      console.log(files);
+  }
+
+
   return (
     <>
       <div className="sell-container">
@@ -12,9 +25,16 @@ function Sell() {
             Fill out the form below to list your item in the Marketplace
           </h3>
 
+          <DragNdrop />
+          <br />
+
           <form className="sell-form">
             <label htmlFor="itemName">Item Name:</label>
             <input type="text" id="itemName" className="sell-input" name="itemName" placeholder="Enter Item Name"/>
+
+            <label htmlFor="price">Price:</label>
+            <div className="currencySign">&#8369;</div>
+            <input type="number" id="price" className="sell-input no-arrows" name="price" min="0" step="0.01" placeholder="Enter price"/>
 
             <label htmlFor="category">Category:</label>
             <select id="category" className="sell-select" name="category">
@@ -23,6 +43,8 @@ function Sell() {
               <option value="Electronics">Electronics</option>
               <option value="Uniforms">Uniforms</option>
               <option value="School Supplies">School Supplies</option>
+              <option value="Foods">Foods</option>
+              <option value="Collectibles">Collectibles</option>
               <option value="Others">Others</option>
             </select>
 
@@ -34,14 +56,14 @@ function Sell() {
               <option value="Good">Good</option>
             </select>
 
-            <label htmlFor="price">Price:</label>
-            <input type="number" id="price" className="sell-input no-arrows" name="price" min="0" step="0.01" placeholder="Enter price"/>
-
             <label htmlFor="description">Description:</label>
-            <textarea id="description" className="sell-description" name="description" placeholder="Describe what you are selling and include any deatils a buyer might be interested in."></textarea>
+            <textarea id="description" className="sell-description" name="description" placeholder="Describe what you are selling and include any details a buyer might be interested in."></textarea>
 
-            <button type="submit" className="sell-button"><b>Submit</b></button>
-            
+            <div className="buttonsDisplay">
+              <button type="submit" className="sell-button"><b>Submit</b></button>
+              <button className="cancel-button" onClick={goHome}><b>Cancel</b></button>
+            </div>  
+
           </form>
         </div>
       </div>

@@ -28,10 +28,10 @@ nav{
     gap: 30px;
 }
 
-i {
+#headerIcon {
     font-size: 50px;
     position: absolute;
-    top: 20px;
+    top: 30px;
     right: 80px; /* Icon stays on the right */
 }
 
@@ -43,20 +43,55 @@ i {
 
 .nav-link:hover {
     text-decoration: none;   
-    color: #456a31;             
-    font-size: 15px;               
+    color: #456a31;                         
 }
+
+.profile-icon-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    min-width: 150px;
+    z-index: 1000;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .dropdown-menu a:hover {
+    background: #f0f0f0;
+  }
+
+  .homeLogo{
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+  }
+  
 
 
 @media (max-width: 1250px) {
 
-    header{
+    .homeLogo, header{
         flex-direction: column;
     }
 
     img {
-        width: 23vw;
-        height: 23vw;
+        width: 15vw;
+        height: 15vw;
         padding-left: 0;
         margin-right: 0;
         margin-bottom: 0px; /* Add space below the logo */
@@ -76,28 +111,33 @@ i {
     
 }
 
-@media (max-width: 1000px) {
-    nav{
+@media (max-width: 800px) {
+    .nav-link{
         font-size: 12px;
+    }
+
+    h1{
+        padding-left: 0;
+        font-size: 5vw;
     }
 }
 
 @media (max-width: 768px) {
-    i {
+    #headerIcon {
         right: 60px; /* Adjust position */
         font-size: 40px;
     }
 }
 
 @media (max-width: 480px) {
-    i {
+    #headerIcon {
         right: 35px; /* Move further left */
         
     }
 }
 
 @media (max-width: 360px) {
-    i {
+    #headerIcon {
         right: 10px; /* Adjust even more */
         font-size: 25px;
        

@@ -1,7 +1,7 @@
 .background-wrapper{
     position: relative;
     height: 100vh;
-      overflow: hidden; 
+    overflow: hidden; 
 }
 
 .background{
@@ -108,5 +108,17 @@ button:hover{
         position: absolute;
     }
 }
+
+
+@media only screen and (max-height: 375px) {
+    .background-wrapper {
+        height: 140vh;  /* Set height to auto for smaller screens */
+      }
+  
+      .button2{
+          top: 86%;
+      }
+  }
+
 
 

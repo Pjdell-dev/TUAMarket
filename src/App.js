@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Sell from "./components/Sell";
+import MyProfile from "./components/MyProfile";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} /> {/* Home page */}
           <Route path="sell" element={<Sell />} /> {/* Sell page */}
+          <Route path="myProfile" element={<MyProfile />} /> {/* Sell page */}
         </Routes>
       </main>
 

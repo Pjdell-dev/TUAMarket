@@ -1,0 +1,421 @@
+.profile-container {
+    background-color: #D9D9D9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Profile Header */
+.profile-nameBox {
+    background-color: white;
+    max-width: 90%;
+    width: 100%;
+    height: 470px;
+    margin-top: 50px;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+/* Cover Photo */
+.profile-coverBG {
+    background-color: #547B3E;
+    width: 100%;
+    height: 200px;
+}
+
+/* Profile Picture */
+.profile-pic {
+    position: relative;
+    margin-top: -75px; /* Overlapping the cover photo */
+    display: flex;
+    justify-content: center; /* Center the image */
+    align-items: center;
+    flex-shrink: 0; /* Prevents resizing */
+}
+
+.profile-pic img {
+    border: 5px solid grey;
+    border-radius: 50%;
+    height: 180px;
+    width: 180px;
+    object-fit: cover;
+    padding: 0;
+}
+
+/* Profile Name and Details */
+.profile-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center text */
+    margin-left: 0;
+    flex-grow: 1;
+}
+
+.profile-name h1 {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.profile-name p {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-left: 0;
+}
+
+/* Rating Container */
+.rating-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the star and rating */
+    margin-top: 5px; /* Space between the email and rating */
+    gap: 12px; /* Space between the star and the rating score */
+}
+
+/* Star Icon */
+#starReview {
+    font-size: 30px;
+    color: #547B3E;
+    margin-top: -15px;
+}
+
+/* Rating Score */
+.rating-score {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 5px !important;
+}
+
+/* Navigation Tabs */
+.profile-tabs {
+    background-color: white;
+    max-width: 90%;
+    width: 100%;
+    height: 60px;
+    margin-top: 20px;
+    display: flex;
+    border-radius: 10px;
+}
+
+.navMenu {
+    display: flex;
+    gap: 20px;
+}
+
+.navMenu a {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    padding-top: 18px;
+    padding-left: 50px;
+    padding-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.navMenu a:hover {
+    color: #547B3E;
+}
+
+/* Content Sections */
+.myListings, .reviews, .settings {
+    background-color: white;
+    max-width: 90%;
+    width: 100%;
+    min-height: 300px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.myListings h2{
+    margin-left: 80px;
+    margin-top: 50px;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.listingsCard{
+    position: relative;
+}
+
+.items{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.itemCard{
+    display: block;
+    border-radius: 7px;
+    border: 1px solid #ddd;
+    margin: 5px 15px 50px 10px;
+    padding: 25px;
+    padding-top: 30px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    height: auto;
+    font-family: Arial;
+    font-size: 16px;
+}
+
+.itemCard h3{
+    margin-top: 25px;
+}
+
+.itemCard:hover{
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.7);
+}
+
+.itemDeets{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.itemDeets p:nth-of-type(2){
+    position: absolute;
+    translate: 178px 10px;
+    font-size: 18px;
+}
+
+.itemDeets p:nth-of-type(3){
+    position: absolute;
+    translate: 110px 65px;
+    
+}
+
+.itemTitle{
+    width: 145px;
+    padding: 0;
+}
+
+.heart{
+    color: #547B3E;
+    font-size: 20px;
+    position: absolute;
+    translate: 152px 28px;
+}
+
+.editListButton{
+    background-color: grey;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 12px;
+    font-size: 15px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.editListButton:hover, .soldButton:hover{
+    color: yellow;
+}
+
+.soldButton{
+    background-color: #547B3E;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 12px;
+    font-size: 15px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.search-container{
+    margin-left: 600px;
+    margin-top: -70px;
+    width: 18em; 
+    position: absolute;
+
+}
+
+.search-container input{
+    border: 2px solid black;
+    padding: 12px;
+    padding-left: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+
+/* 🔹 RESPONSIVE DESIGN */
+
+/* Medium Screens (Tablets) */
+@media (max-width: 746px) {
+    .profile-nameBox {
+        height: auto;
+    }
+
+    .profile-coverBG {
+        height: 150px;
+    }
+
+    /* 🔹 Center everything on tablets */
+    .profile-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-pic {
+        margin-top: -75px;
+        margin-left: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .profile-pic img {
+        height: 130px;
+        width: 130px;
+    }
+
+    .profile-name {
+        margin-top: 15px;
+        margin-left: 0;
+        align-items: center; /* Center text on small screens */
+    }
+
+    .profile-name h1 {
+        font-size: 24px;
+    }
+
+    .profile-name p {
+        font-size: 16px;
+    }
+
+    .navMenu a {
+        font-size: 16px;
+        padding-left: 0;
+    }
+
+}
+
+/* Small Screens (Phones) */
+@media (max-width: 768px) {
+    .profile-coverBG {
+        height: 120px;
+    }
+
+    /* 🔹 Force everything to center on small screens */
+    .profile-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-pic {
+        margin-left: 0;
+    }
+
+    .profile-pic img {
+        height: 120px;
+        width: 120px;
+    }
+
+    .profile-name {
+        align-items: center;
+    }
+
+    .profile-name h1 {
+        font-size: 22px;
+    }
+
+    .profile-name p {
+        font-size: 14px;
+    }
+
+    .profile-tabs {
+        height: auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navMenu {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .navMenu a {
+        font-size: 16px;
+        padding-left: 0;
+    }
+
+    .search-container {
+        width: 70%; /* Makes it more compact on tablets */
+        right: 50%; /* Center align */
+        transform: translateX(50%);
+    }
+    
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+    .profile-coverBG {
+        height: 100px;
+    }
+
+    .profile-pic img {
+        height: 100px;
+        width: 100px;
+    }
+
+    .profile-name {
+        align-items: center;
+    }
+
+    .profile-name h1 {
+        font-size: 20px;
+    }
+
+    .profile-name p {
+        font-size: 12px;
+    }
+
+    .navMenu {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .search-container {
+        width: 90%; /* Uses almost full width on smaller screens */
+        right: 50%;
+        transform: translateX(50%);
+    }
+}
+
+@media only screen and (max-height: 375px) {
+    .profile-nameBox {
+        height:300px;
+    }
+
+    .navMenu a {
+        font-size: 16px;
+        padding-left: 0;
+    }
+
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1023px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+  
+    .profile-nameBox {
+        height: 300px;
+    }
+}
+
+@media only screen 
+and (min-device-width: 820px) 
+and (max-device-width: 1180px) 
+and (-webkit-min-device-pixel-ratio: 2) {
+
+  .profile-nameBox {
+      height: 475px;
+  }
+}

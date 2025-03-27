@@ -1,21 +1,39 @@
-import React from 'react'
+import React from 'react';
+import "./Footer.css";
+
 
 function Footer() {
   return (
     <div className='Footer' style={{
       backgroundColor: 'black',
       display: 'flex',
-      color: 'white'
+      color: 'white',
+      padding: '30px',
     }}>
 
-      <h1>Hello World</h1>
+      <div className="footerCard1">
+        <h2>Contact us at:</h2>
+        <div className="conDetails">
+          <i className="bi bi-telephone-fill phone"/>
+          <a href=""><h3>09151234567</h3></a>
+        </div>
+        <div className="conDetails">
+          <i class="bi bi-envelope-at-fill envelope"/>
+          <a href=""><h3>tuamarketplace.support@gmail.com</h3></a>
+        </div>
+        <div className="conDetails">
+          <i class="bi bi-geo-alt-fill location"/>
+          <a href=""><h3>TUA - Student Affairs Center<br/>SSC Building (2nd Floor)</h3></a>
+        </div>         
+      </div>
+
       <div className="footerCard2">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqp4EjwhpEjn9Dsiwa5l6bmagh6xGoRgKHDg&s" alt="OPC Logo"></img>
-                <div>
-                    <h2>Otanon Prime Collectibles</h2>
-                    <p>©2025 Otanon Prime Collectibles All Rights Reserved.</p>
-                </div>
-            </div>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Trinity_University_of_Asia_seal.svg/1200px-Trinity_University_of_Asia_seal.svg.png" alt="TUA Logo"/>
+          <div>
+            <h2>TUA Marketplace</h2>
+            <p>&#169;2025 TUA Marketplace</p>
+          </div>
+      </div>
     </div>
     
   )
