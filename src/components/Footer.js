@@ -9,6 +9,7 @@ function Footer() {
       display: 'flex',
       color: 'white',
       padding: '30px',
+      paddingTop: '12px',
     }}>
 
       <div className="footerCard1">

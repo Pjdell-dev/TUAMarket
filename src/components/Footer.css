@@ -2,7 +2,7 @@
     display: block;
     float: left;
     margin-right: -15px;
-    margin-left: 70px;
+    margin-left: 80px;
     justify-items: left;
 }
 
@@ -15,6 +15,7 @@
     align-items: center;
     justify-content: center;
     margin-left: 22px;
+    margin-top: -10px;
 }
 
 .conDetails img{
@@ -36,7 +37,7 @@
 .footerCard2{
     display: flex;
     float: left;
-    margin: 50px 150px 50px 250px;
+    margin: 50px 10px 50px 240px;
     align-items: center;
     justify-content: center;
 }
@@ -76,11 +77,7 @@
     }
 
     .footerCard1{
-        margin-left: -15px;
-    }
-
-    .footerCard1{
-        margin-left: -15px;
+        margin-left: -5px;
     }
 
     .conDetails {
@@ -88,21 +85,26 @@
     }
 
     .conDetails a{
-        font-size: 2vw;
+        font-size: 15px;
     }
 
     .footerCard2{
-        margin: 35px 0px 0px 0px;
+        margin: 35px 20px 0px 0px;
         align-items: center;
         justify-content: center;
     }
 
-    .footerCard2 h2 , .footerCard2 p{
-        font-size: 2vw;
+    .footerCard2 h2 {
+        font-size: 30px;
+    }
+
+    .footerCard2 p{
+        font-size: 16px;
+        margin-top: -10px;
     }
 
     .footerCard2 img{
-        width: 15vw;
-        height: 15vw;
+        width: 100px;
+        height: 100px;
     }
 }
