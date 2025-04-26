@@ -1,0 +1,319 @@
+body {
+    margin: 0;
+}
+
+.pageWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.headerLogIn {
+    flex-shrink: 0;
+}
+
+.headerLogIn h1 {
+    padding-left: 10px;
+    font-size: 25px;
+}
+
+.logInBG {
+    display: flex;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    padding: 35px;
+    padding-right: 80px;
+    align-items: center;
+    justify-content: right;
+    z-index: 0;
+    min-height: 75vh;
+    height: auto;
+}
+
+.logInBG::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(https://www.tua.edu.ph/wp-content/uploads/2017/12/1-845x650.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(75%) contrast(100%);
+    z-index: -1;
+}
+
+.logInBox {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgrey;
+    border-radius: 12px;
+    width: 45%;
+    height: 535px;
+    align-items: center;
+}
+
+.logInContents {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    overflow: hidden;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.logInTitle {
+    padding-left: 0;
+}
+
+form {
+    margin-top: 15px;
+}
+
+#iconLogo {
+    position: absolute;
+    translate: 15px 17px;
+    font-size: 20px;
+}
+
+#userName,
+.password {
+    margin-top: 5px;
+    font-family: Arial;
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 10px 10px 10px 50px;
+    width: 250px;
+}
+
+#eyeBtn1 {
+    position: absolute;
+    translate: -35px 17px;
+    font-size: 20px;
+}
+
+.signInButton {
+    background-color: #247327;
+    padding: 15px;
+    margin-top: 20px;
+    color: white;
+    font-size: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.forgotPass {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: -170px;
+}
+
+.forgotPass:hover {
+    color: green;
+}
+
+.logInContents h4 {
+    margin-top: 30px;
+}
+
+.googleLogIn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 10px;
+    margin-top: 5px;
+    color: black;
+    font-size: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    width: 70%;
+    gap: 25px;
+}
+
+.googleLogIn img{
+    margin-left: -25px;
+}
+
+.googleLogIn:hover {
+    color: green;
+}
+
+.gLogo {
+    width: 35px;
+    height: 35px;
+}
+
+@media (max-width: 1200px) {
+
+    .headerLogIn {
+        gap: 0;
+    }
+
+    .logInBG {
+        justify-content: center;
+        padding: 75px;
+    }
+
+    .logInBox {
+        width: 70%;
+        min-height: 50vh;
+        padding-bottom: 50px;
+    }
+
+    .forgotPass {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .googleLogIn {
+        min-width: 150px;
+        max-width: 350px;
+        gap: 15px;
+        padding-left: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .logInBox {
+        width: 70%;
+        min-height: 50vh;
+        padding-bottom: 50px;
+    }
+
+    .logInContents {
+        width: 90%;
+    }
+
+    .signInButton {
+        width: 100%;
+    }
+
+    .googleLogIn {
+        min-width: 150px;
+        max-width: 350px;
+        gap: 15px;
+        padding-left: 30px;
+    }
+
+    .forgotPass {
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .headerLogIn h1 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .logInBG {
+        padding: 25px;
+    }
+
+    .logInBox {
+        width: 80%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .logInContents {
+        margin-top: 15px;
+    }
+
+    #iconLogo {
+        translate: 12px 15px;
+    }
+
+    #eyeBtn1{
+        translate: -35px 15px;
+    }
+
+    #userName,
+    .password {
+        font-size: 14px;
+        padding-left: 40px;
+    }
+
+    .googleLogIn {
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .headerLogIn h1 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .logInBG {
+        padding: 25px;
+    }
+
+    .logInBox {
+        width: 75%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .logInBox form{
+        margin-left: -15px;
+    }
+
+    .signInButton {
+        width: 109%;
+    }
+
+
+    .logInContents {
+        margin-top: 15px;
+    }
+
+    #iconLogo {
+        translate: 15px 12px;
+    }
+
+    #eyeBtn1{
+        translate: 188px -30px;
+    }
+
+    #userName,
+    .password {
+        font-size: 14px;
+        padding-left: 50px;
+        width: 75%;
+    }
+
+    .googleLogIn {
+        font-size: 12px;
+        gap: 0px;
+    }
+
+    .googleLogIn img{
+        padding-left: 10px;
+        
+    }
+}
+
+@media (max-width: 420px) {
+
+    #eyeBtn1{
+        translate: -30px 12px;
+    }
+}
+
+@media only screen and (max-height: 500px) {
+    .logInBG {
+        min-height: 180vh;
+        height: auto;
+    }
+  }
