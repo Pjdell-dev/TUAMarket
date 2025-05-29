@@ -1,37 +1,73 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./MyProfile.css";
 
 function MyProfile() {
   const [activeTab, setActiveTab] = useState("myListings");
   const [searchQuery, setSearchQuery] = useState("");
 
+  /* (For change password in case implemented)
   const [oldPasswordType, setOldPasswordType] = useState("password");
   const [newPasswordType, setNewPasswordType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
 
   const [oldPassView, setOldPassView] = useState("bi bi-eye-fill");
   const [newPassView, setNewPassView] = useState("bi bi-eye-fill");
-  const [confirmPassView, setConfirmPassView] = useState("bi bi-eye-fill");
+  const [confirmPassView, setConfirmPassView] = useState("bi bi-eye-fill");*/
+
+  const [userData, setUserData] = useState([]);
+
+  const navigate = useNavigate();
 
 
   const ip = process.env.REACT_APP_LAPTOP_IP; //IP address (see env file for set up)
   useEffect(() => {
+    //Checking if logged in, if not redirected to log-in
     fetch(`${ip}/tua_marketplace/fetchSession.php`, {
       method: "GET",
       credentials: "include",
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Session Data:", data);
-        alert(`Session Email: ${data.email}`);
+        if (!data.user_id) {
+          navigate("/"); // Redirect to login if not authenticated
+        }
       })
       .catch((error) => {
         console.error("Error fetching session data:", error);
       });
-  }, [ip]);
+
+
+    //fetching account owner details
+    fetch(`${ip}/tua_marketplace/fetchMyProfileDeets.php`, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUserData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching session data:", error);
+      });
+
+    //fetching items owned by account owner
+    fetch(`${ip}/tua_marketplace/fetchMyProfileItems.php`, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setItem(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching session data:", error);
+      });
+
+  }, []);
   
 
-
+  /* (For change password in case implemented)
   const togglePassword = (field) => {
     if (field === "oldPassword") {
       setOldPasswordType(oldPasswordType === "password" ? "text" : "password");
@@ -45,23 +81,20 @@ function MyProfile() {
       setConfirmPasswordType(confirmPasswordType === "password" ? "text" : "password");
       setConfirmPassView(confirmPassView === "bi bi-eye-fill" ? "bi bi-eye-slash-fill" : "bi bi-eye-fill");
     }
-  };
+  };*/
 
 
-  const items = [
-    { id: 1, title: "Jollibee Sanrio Happy Meal Collection", price: 600, condition: "Like New" },
-    { id: 2, title: "NBA Cards - Victor Wembanyama Top Class Rookie Card (RC)", price: 600, condition: "Like New" },
-    { id: 3, title: "ITEM #3", price: 600, condition: "Like New" },
-    { id: 4, title: "ITEM #4", price: 600, condition: "Like New" },
-    { id: 5, title: "ITEM #5", price: 600, condition: "Like New" },
-    { id: 6, title: "ITEM #6", price: 600, condition: "Like New" },
-    { id: 7, title: "ITEM #7", price: 600, condition: "Like New" },
-    { id: 8, title: "ITEM #8", price: 600, condition: "Like New" },
-  ];
+  const handleMarkSold = () => {
+    window.confirm("Are you sure?");
+
+  }
+
+
+  const [item, setItem] = useState([]);
 
   // Filter items based on search input
-  const filteredItems = items.filter((item) =>
-    item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredItems = item.filter((item) =>
+    item.item_name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -72,18 +105,20 @@ function MyProfile() {
           <div className="profile-nameBox">
             <div className="profile-coverBG"></div>
             <div className="profile-pic">
-              <img src="https://lh3.googleusercontent.com/a-/ALV-UjUIStqWY_RaxX007NIEzp3CHWWc_H0573ci0o-N61I=s1000" alt="Profile Photo" />
+              <img src={userData.profile_pic} alt="Profile Photo" />
+             
             </div>
             <div className="profile-name">
-              <h1>{"Elisha Marie Vea Daliba"}</h1>
-              <p>{"elishamarieveapdaliba@tua.edu.ph"}</p>
+              <h1>{userData.first_name + " " + userData.last_name}</h1>
+              <p>{userData.email}</p>
               <div className="rating-container">
                 <span id="starReview">
                   <i className="bi bi-star-fill"></i>
                 </span>
-                <p className="rating-score">5.0</p>
+                <p className="rating-score">{"0.0"}</p>
               </div>
             </div>
+           
           </div>
 
           {/* PROFILE TABS */}
@@ -95,8 +130,11 @@ function MyProfile() {
               <a href="#reviews" onClick={() => setActiveTab("reviews")}>
                 Reviews
               </a>
-              <a href="#settings" onClick={() => setActiveTab("settings")}>
-                Settings
+              <a href="#userDetails" onClick={() => setActiveTab("details")}>
+                User Details
+              </a>
+               <a href="#likedItems" onClick={() => setActiveTab("liked")}>
+                Liked Items
               </a>
             </div>
           </div>
@@ -118,34 +156,45 @@ function MyProfile() {
               <div className="items">
                 {filteredItems.length > 0 ? (
                   filteredItems.map((item) => (
-                    <div className="itemCard" key={item.id}>
-                      <img
-                        src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/objects.png"
-                        style={{
-                          width: "180px",
-                          height: "180px",
-                          border: "3px solid green",
-                          borderRadius: "12px",
-                          alignItems: "center",
-                          marginLeft: "5.5px"
-                        }}
-                        alt="Item"
-                      />
+                    <div className="itemCard" key={item.item_id}>
+                      <div className="soldBanner" style={{display:"none"}}> {/*set this up if item is considered sold*/}
+                        SOLD
+                      </div>
+                      <Link
+                        to={`/itemdetails/${item.item_id}/${item.item_name}`}
+                        className="item-details-link"> 
+                        <img
+                          src={item.preview_pic}
+                          style={{
+                            width: "180px",
+                            height: "180px",
+                            border: "3px solid green",
+                            borderRadius: "12px",
+                            alignItems: "center",
+                            marginLeft: "5.5px"
+                          }}
+                          alt="Item"
+                        />
+                      </Link> 
                       <div className="itemDeets">
-                        <div className="itemTitle">
-                          <h3>{item.title}</h3>
-                        </div>
-                        <i className="bi bi-heart-fill heart"></i>
-                        <p><b>0</b></p>
+                        <Link
+                            to={`/itemdetails/${item.item_id}/${item.item_name}`}
+                            className="item-details-link">  
+                          <div className="itemTitle">
+                            <h3>{item.item_name}</h3>
+                          </div>
+                         </Link>
+                        <i className="bi bi-heart-fill heart1"></i>
+                        <p className="heartCount1">{0}</p>
 
                         <div className="price-condition">
                           <p></p>
-                          <p>&#8369;{item.price}.00</p>
-                          <p>&#x2022; {item.condition}</p>
+                          <p>&#8369;{item.price}</p>
+                          <p>&#x2022; {item.item_condition}</p>
                         </div>
                         
                         <button className="editListButton">EDIT LISTING</button>
-                        <button className="soldButton">MARK SOLD</button>
+                        <button className="soldButton" onClick={handleMarkSold}>MARK SOLD</button>
                       </div>
                     </div>
                   ))
@@ -191,11 +240,11 @@ function MyProfile() {
                 </div>
 
                 <div className="stars">
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star"></i>
+                  <i className="bi bi-star-fill"></i>
+                  <i className="bi bi-star-fill"></i>
+                  <i className="bi bi-star-fill"></i>
+                  <i className="bi bi-star-fill"></i>
+                  <i className="bi bi-star"></i>
                 </div>
 
                 <div className="review-description">
@@ -208,14 +257,36 @@ function MyProfile() {
           </div>
 
           {/* Settings Tab */}
-          <div className="settings" style={{ display: activeTab === "settings" ? "block" : "none" }}>
-              <h2>Account Settings</h2>
+          <div className="settings" style={{ display: activeTab === "details" ? "block" : "none" }}>
+              <h2>User Details</h2>
               <div className="settingsCard">
-                <div style={{display: "flex", gap:"40px"}}><p><b>Account Type</b>: </p> <p>{"USER"}</p></div>
-                <div style={{display: "flex", gap:"40px"}}><p><b>User ID</b>: </p> <p>{"USER"}</p></div>
-                <div style={{display: "flex", gap:"40px"}}><p><b>Email</b>: </p> <p>{"USER"}</p></div>
+              <table>
+                  <tbody>
+                    <tr>
+                      <td><b>Account Type</b></td>
+                      <td>{userData.user_type}</td>
+                    </tr>
+                    <tr>
+                      <td><b>User ID</b></td>
+                      <td>{userData.user_id}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Email</b></td>
+                      <td>{userData.email}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Department</b></td>
+                      <td>{userData.department}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Date Registered</b></td>
+                      <td>{userData.regDate}</td>
+                    </tr>
+                  </tbody>
+                </table>
                 <br/><hr/>
 
+                {/* (For change password in case implemented)
                 <h3>Change Password</h3><br/>
                 
                 <form action="">
@@ -238,10 +309,13 @@ function MyProfile() {
                   </div>
 
                   <center><button>Update</button></center>
-                </form>
+                </form>*/}
               </div>
               
           </div>
+            <div className="likeditems" style={{ display: activeTab === "liked" ? "block" : "none" }}>
+
+            </div>
         </div>
       </main>
     </>
