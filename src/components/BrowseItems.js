@@ -149,47 +149,61 @@ const handleFilters = (filters) => {
 }
 
  //for setting likes
- const [liked, setLiked] = useState([]);
+ const [liked, setLiked] = useState({});
+useEffect(() => {
+  if (userId) {
+    fetch(`${ip}/tua_marketplace/fetchLikedItems.php?user_id=${userId}`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((likedItemsData) => {
+        const likedMap = {};
+        likedItemsData.forEach((item) => {
+          likedMap[item.item_id] = true;
+        });
+        setLiked(likedMap);
+      })
+      .catch((error) => {
+        console.error("Error fetching liked items:", error);
+      });
+  }
+}, [userId]);
+
 
 
   const toggleLike = (item) => {
-  setLiked((liked) => {
-    const isLiked = !liked[item.item_id]; // Toggle like
-    
+  const isLiked = !liked[item.item_id]; // Toggle like
 
-    // Send like/unlike to the backend
-    fetch(`${ip}/tua_marketplace/InsertLikeditems.php`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_id: userId,
-        item_id: item.item_id,
-        item_name: item.item_name,
-        description: item.description,
-        category: item.category,
-        preview_pic: item.previewpic,
-        liked: isLiked,
-      }),
-      credentials: "include",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Fetched data:", data);
-        
-      })
-      .catch((error) => {
-        console.error("Error sending like/unlike:", error);
-      });
+  // Update local state immediately
+  setLiked((prevLiked) => ({
+    ...prevLiked,
+    [item.item_id]: isLiked,
+  }));
 
-    // Update local state
-    return {
-      ...liked,
-      [item.item_id]: isLiked,
-    };
+  // Send like/unlike to the backend
+  fetch(`${ip}/tua_marketplace/InsertLikeditems.php`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user_id: userId,
+      item_id: item.item_id,
+      item_name: item.item_name,
+      description: item.description,
+      category: item.category,
+      preview_pic: item.previewpic,
+      liked: isLiked,
+    }),
+    credentials: "include",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Fetched data:", data);
+      // Optionally refresh liked items
   });
 };
+
 
 
   return (
